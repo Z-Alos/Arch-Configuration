@@ -1,0 +1,22 @@
+>> first uninstall everything related to nvidia because it sucks
+>> then install your 390-dkms version because you haven't got another gpu (fuck)
+>> The 390xx driver requires some 32-bit libraries. Enable it if it's not already: 
+    > sudo nano /etc/pacman.conf
+    Uncomment:
+        [multilib]
+        Include = /etc/pacman.d/mirrorlist
+>> save & exit
+>> sudo pacman -Syu
+>> sudo pacman -S base-devel linux-headers dkms
+>> yay -S nvidia-390xx-dkms nvidia-390xx-utils nvidia-390xx-settings lib32-nvidia-390xx-utils
+>> Blacklist Nouveau (If Exists)
+    > sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+    Add the following lines:
+        blacklist nouveau
+        options nouveau modeset=0
+>> save & exit
+>> sudo mkinitcpio -P
+>> sudo nvidia-xconfig
+>> sudo reboot
+>> nvidia-smi
+>> Should Work now...
