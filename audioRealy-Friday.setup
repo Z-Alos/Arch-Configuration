@@ -1,0 +1,118 @@
+Simple Step-by-Step Guide to Set Up AudioRelay with PipeWire on Arch Linux
+Persistance Solution
+
+Step 1: Install Required Package
+
+Open a terminal and install pipewire-pulse:
+
+sudo pacman -S pipewire-pulse
+
+Step 2: Create a Virtual Microphone
+
+    Create a configuration directory:
+
+mkdir -p ~/.config/pipewire/pipewire-pulse.conf.d
+
+Open a new configuration file in a text editor:
+
+nano ~/.config/pipewire/pipewire-pulse.conf.d/audiorelay.conf
+
+Copy and paste the following lines into the file:
+
+    pulse.cmd = [
+        { cmd = "load-module", args = "module-null-sink sink_name=audiorelay-virtual-mic-sink sink_properties=device.description=Virtual-Mic-Sink", flags = [] },
+        { cmd = "load-module", args = "module-remap-source master=audiorelay-virtual-mic-sink.monitor source_name=audiorelay-virtual-mic source_properties=device.description=Virtual-Mic", flags = [] }
+    ]
+
+    Save the file and exit:
+        Press CTRL + X, then Y, and hit Enter.
+
+Step 3: Restart PipeWire to Apply Changes
+
+Run the following command:
+
+systemctl --user restart pipewire-pulse
+
+Step 4: Set Up AudioRelay
+
+    Install AudioRelay (if not installed):
+
+yay -S audiorelay
+
+Launch AudioRelay from the terminal:
+
+audiorelay
+
+On Your Phone:
+
+    Open the AudioRelay app.
+    Set the connection mode to USB (ADB) or Wi-Fi.
+
+On Your PC:
+
+    In AudioRelay, select Virtual-Mic-Sink as the audio output.
+    Click Connect to stream audio from your phone to your PC.
+
+
+To set virtual mic as default (permanent)
+
+Create (or edit) the PipeWire config file:
+
+nano ~/.config/pipewire/pipewire-pulse.conf.d/default-input.conf
+
+Add this line:
+
+set-default-source audiorelay-virtual-mic
+
+To make it persist over reboot
+1. Create a new systemd service file
+
+nano ~/.config/systemd/user/audiorelay.service
+
+2. Add the following content:
+
+[Unit]
+Description=AudioRelay Virtual Mic Setup
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/systemctl --user restart pipewire-pulse
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+3. Enable and start the service:
+
+systemctl --user enable audiorelay.service
+systemctl --user start audiorelay.service
+
+Now, after every reboot, PipeWire will automatically restart and load the virtual mic, so you won’t need to run the command manually anymore. 🚀
+
+********************************************************************************
+********************************************************************************
+
+TL;DR (Just Commands)
+
+# 1. Install pipewire-pulse
+sudo pacman -S pipewire-pulse
+
+# 2. Create config file for virtual mic
+mkdir -p ~/.config/pipewire/pipewire-pulse.conf.d
+nano ~/.config/pipewire/pipewire-pulse.conf.d/audiorelay.conf
+
+Paste this inside audiorelay.conf:
+
+pulse.cmd = [
+    { cmd = "load-module", args = "module-null-sink sink_name=audiorelay-virtual-mic-sink sink_properties=device.description=Virtual-Mic-Sink", flags = [] },
+    { cmd = "load-module", args = "module-remap-source master=audiorelay-virtual-mic-sink.monitor source_name=audiorelay-virtual-mic source_properties=device.description=Virtual-Mic", flags = [] }
+]
+
+# 3. Restart pipewire-pulse
+systemctl --user restart pipewire-pulse
+
+# 4. Install & launch AudioRelay
+yay -S audiorelay
+audiorelay
+
+Now, connect your phone via USB/Wi-Fi, select Virtual-Mic as input, and enjoy! 🎤🔥
