@@ -15,7 +15,7 @@ ANIME_WATCHED_EPISODE_DIR="$HOME/Downloads/Bleach/Watched"
 
 
 #Moving Anime Episode From Download Dir to Anime Playlist
-mv "$ANIME_EPISODE_DOWNLOAD_DIR/Bleach ["* "$ANIME_EPISODE_DIR"
+mv "$ANIME_EPISODE_DOWNLOAD_DIR/Bleach -"* "$ANIME_EPISODE_DIR"
 
 #Adjusting Volume
 wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.8 # 80%
@@ -56,7 +56,7 @@ for ((i = 0; i < ${#fileNames[@]}; i++)); do
 			echo "Completed::${completed}%"
 			#if (( completed > 85 )); then
 			if awk "BEGIN { exit !($completed > 85) }"; then
-				mv -n "$ANIME_EPISODE_DIR/${extractedName[$idx]}" "${ANIME_WATCHED_EPISODE_DIR}"
+				mv -n "$ANIME_EPISODE_DIR/$name" "${ANIME_WATCHED_EPISODE_DIR}"
 			fi
 	 		break	
 	 	fi
