@@ -122,8 +122,8 @@ alias dv='setxkbmap us dvorak'
 alias rm='rm --preserve-root'
 
 # custom shit
-bindkey -v
-export KEYTIMEOUT=1
+# bindkey -v
+# export KEYTIMEOUT=1
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
