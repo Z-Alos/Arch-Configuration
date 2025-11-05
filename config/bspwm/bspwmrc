@@ -22,7 +22,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a opengl state=floating 
 
-feh --bg-scale ~/Downloads/wall.png &
+feh --bg-scale ~/.config/wallpapers/retro_vibe_setup.png &
 zen-browser &
 xset r rate 200 35 &
 
