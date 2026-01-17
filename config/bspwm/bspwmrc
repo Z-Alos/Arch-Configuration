@@ -22,6 +22,10 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a opengl state=floating 
 
+# Friday workspace routing
+bspc rule -a kitty:friday-term desktop='^3'
+bspc rule -a kitty:friday-nvim desktop='^8'
+
 feh --bg-scale ~/.config/wallpapers/retro_vibe_setup.png &
 zen-browser &
 xset r rate 200 35 &

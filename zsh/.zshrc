@@ -118,13 +118,27 @@ alias bye='shutdown -P now'
 alias rbye='shutdown -r now'
 alias dv='setxkbmap us dvorak'
 
+# Pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
+
 # Fucking Hell (later then never)
-alias rm='rm --preserve-root'
+trash_safe() {
+    for path in "$@"; do
+        case "$path" in
+            /|/*|/usr|/usr/*|/opt|/opt/*)
+                echo "🚫 Nope. Dangerous path: $path"
+                return 1
+                ;;
+        esac
+    done
 
-# custom shit
-# bindkey -v
-# export KEYTIMEOUT=1
-
+    command trash "$@"
+}
+alias rm='trash_safe'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
