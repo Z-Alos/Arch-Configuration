@@ -22,11 +22,21 @@ bspc config normal_border_color  "#44475a"   # color of unfocused windows
 
 bspc rule -a Gimp desktop='^9' follow=on
 bspc rule -a zen desktop='^1' follow=on
-bspc rule -a vlc desktop='^0' follow=on
+bspc rule -a vlc desktop='^10' follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a opengl state=floating 
+bspc rule -a initial_term_three desktop=^3 
+bspc rule -a initial_term_eight desktop=^8 
+bspc rule -a ttyclock desktop=^10 state = floating
+bspc rule -a image_vibe desktop=^10 state = floating
+
+# Kitty
+kitty --class initial_term_three &
+kitty --class initial_term_eight &
+kitty --class ttyclock sh -c "tty-clock; exec zsh" &
+kitty --class image_vibe sh -c "echo "insert image"; exec zsh" &
 
 # Friday workspace routing
 bspc rule -a kitty:friday-term desktop='^3'
@@ -34,6 +44,5 @@ bspc rule -a kitty:friday-nvim desktop='^8'
 
 feh --bg-scale ~/.config/wallpapers/retro_vibe_setup.png &
 zen-browser &
-kitty &
-xset r rate 200 35 &
+xset r rate 130 80 &
 

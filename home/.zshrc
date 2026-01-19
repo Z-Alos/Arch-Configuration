@@ -109,10 +109,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='lsd'
-alias ll='lsd -l'
-alias la='lsd -la'
-alias lt='lsd --tree'
+alias ls='lsd -alt'
+alias ll='lsd -l -alt'
+alias la='lsd -la -alt'
+alias lt='lsd --tree -alt'
 
 alias bye='shutdown -P now'
 alias rbye='shutdown -r now'
@@ -123,21 +123,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - bash)"
 eval "$(pyenv virtualenv-init -)"
-
-# Fucking Hell (later then never)
-trash_safe() {
-    for path in "$@"; do
-        case "$path" in
-            /|/*|/usr|/usr/*|/opt|/opt/*)
-                echo "🚫 Nope. Dangerous path: $path"
-                return 1
-                ;;
-        esac
-    done
-
-    command trash "$@"
-}
-alias rm='trash_safe'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -17,7 +17,8 @@ alt + Return
 
 # program launcher
 alt + h 
-	dmenu_run
+    rofi -show drun
+	# dmenu_run
 
 # make sxhkd reload its configuration files:
 alt + Escape
@@ -126,3 +127,8 @@ alt + ctrl + shift + {Left,Down,Up,Right}
 # move a floating window
 alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Move floating window with Alt + Left Mouse Button
+alt + button1
+	bspc node -t floating && bspc node -v $(xdotool getmouselocation --shell | awk 'NR==1{print $2}' ,?)  # pseudo
+
