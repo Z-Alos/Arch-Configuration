@@ -17,7 +17,7 @@ echo "Installing Packages"
 if ! command -v yay >/dev/null 2>&1; then
     echo "Installing yay"
 
-    sudo pacman -S --needed --noconfirm base-devel
+    sudo pacman -Syu --needed --noconfirm base-devel
 
     TMP_DIR="$(mktemp -d)"
     git clone https://aur.archlinux.org/yay.git "$TMP_DIR/yay"
@@ -31,7 +31,7 @@ else
 fi
 
 sudo pacman -Syu --needed - < "$DOTFILES/packages/pacman_packages.txt"
-yay -S --needed - < "$DOTFILES/packages/yay_packages.txt"
+# yay -S --needed - < "$DOTFILES/packages/yay_packages.txt"
 
 # -------------------------
 # XDG directories
@@ -54,7 +54,7 @@ done
 # -------------------------
 echo "Linking home dotfiles"
 
-for file in "$DOTFILES"/home/.*; do
+for file in "$DOTFILES"/home/{*, .*}; do
     name=$(basename "$file")
     [[ "$name" == "." || "$name" == ".." ]] && continue
     ln -sfn "$file" "$HOME/$name"

@@ -3,7 +3,6 @@ kitty
 xdg-user-dirs
 git
 dolphin
-btop
 tar
 ffmpeg
 picom
@@ -13,11 +12,15 @@ zsh
 curl
 wget
 nvim
+btop
 htop
 zip
 unzip
 python3
-pulseaudio
+pipewire 
+pipewire-pulse
+pipewire-alsa
+pipewire-jack
 pulsemixer
 pavucontrol
 zsh-autosuggestions
