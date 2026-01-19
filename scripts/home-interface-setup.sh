@@ -16,4 +16,3 @@ tmux send-keys -t "$SESSION:2" "audiorelay &" C-m
 tmux send-keys -t "$SESSION:2" "firefox https://friday-av.web.app" C-m
 
 kitty tmux attach-session -t "$SESSION"
-
