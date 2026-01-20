@@ -1,7 +1,8 @@
-#
-# wm independent hotkeys
-#
+# --------------------------
+# Hotkeys
+# --------------------------
 
+# Audio Control
 XF86AudioRaiseVolume
 	amixer sset Master 5%+	
 
@@ -11,22 +12,22 @@ XF86AudioLowerVolume
 XF86AudioMute
 	amixer sset Master toggle 
 
-# terminal emulator
+# Terminal emulator
 alt + Return
 	kitty
 
-# program launcher
+# Program launcher
 alt + h 
     rofi -show drun
 	# dmenu_run
 
 # make sxhkd reload its configuration files:
-alt + Escape
+alt + ctrl + Escape
 	pkill -USR1 -x sxhkd
 
-#
+# --------------------------
 # bspwm hotkeys
-#
+# --------------------------
 
 # quit/restart bspwm
 alt + ctrl + {q,o}
@@ -36,9 +37,15 @@ alt + ctrl + {q,o}
 alt + x
 	bspc node -{c,k}
 
-# alternate between the tiled and monocle layout
+# Fullscreen Toggle
 alt + y
-	bspc desktop -l next
+    bspc desktop -l next && \
+    if bspc query -T -m | grep -q '"layout":"monocle"'; then \
+        polybar-msg cmd hide; \
+        bspc config top_padding 0; \
+    else \
+        polybar-msg cmd show; \
+    fi
 
 # send the newest marked node to the newest preselected node
 # alt + y
@@ -53,8 +60,10 @@ alt + g
 #
 
 # set the window state
-alt + {t,shift + t,s,y}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# alt + {t,shift + t,s,y}
+# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+alt + {t, shift + t}
+	bspc node -t {tiled, floating}
 
 # set the node flags
 alt + ctrl + {m,x,y,z}
@@ -131,4 +140,17 @@ alt + {Left,Down,Up,Right}
 # Move floating window with Alt + Left Mouse Button
 alt + button1
 	bspc node -t floating && bspc node -v $(xdotool getmouselocation --shell | awk 'NR==1{print $2}' ,?)  # pseudo
+
+# --------------------------
+# Power Hotkeys
+# --------------------------
+alt + shift + x
+	bspc quit
+
+alt + shift + o
+	systemctl reboot
+
+alt + shift + ;
+	systemctl poweroff
+
 

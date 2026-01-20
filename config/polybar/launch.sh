@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-pkill -x polybar
-while pgrep -x polybar >/dev/null; do sleep 1; done
-polybar main 2>&1 | tee -a /tmp/polybar1.log & disown &
+pkill polybar
 
-echo "Polybar launched..."
+polybar -c ~/.config/polybar/config.ini left &
+polybar -c ~/.config/polybar/config.ini center &
+polybar -c ~/.config/polybar/config.ini right &

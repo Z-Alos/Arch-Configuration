@@ -109,7 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='lsd -alt'
+alias ls='lsd'
 alias ll='lsd -l -alt'
 alias la='lsd -la -alt'
 alias lt='lsd --tree -alt'
