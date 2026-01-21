@@ -9,6 +9,9 @@ picom &
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
 bspc config border_width         0
 bspc config window_gap          12
 
@@ -32,14 +35,16 @@ bspc rule -a Screenkey manage=off
 bspc rule -a opengl state=floating 
 bspc rule -a initial_term_three desktop=^3 
 bspc rule -a initial_term_eight desktop=^8 
-bspc rule -a ttyclock desktop=^10 state=floating
+bspc rule -a ttyclock desktop=^10 state=floating rectangle=420x260+1320+300
+bspc rule -a cava_init desktop=^10 state=floating rectangle=1870x260+20+790
 bspc rule -a image_vibe desktop=^10 state=floating
 
 # Kitty
 kitty --class initial_term_three &
 kitty --class initial_term_eight &
-kitty --class ttyclock sh -c "tty-clock;" &
-kitty --class image_vibe sh -c "echo "insert image"; exec zsh" &
+kitty --class ttyclock sh -c "tty-clock -c -t; exec zsh" &
+kitty --class cava_init sh -c "cava; exec zsh" &
+vibe sh -c "echo "insert image"; exec zsh" &
 
 # Friday workspace routing
 bspc rule -a kitty:friday-term desktop='^3'

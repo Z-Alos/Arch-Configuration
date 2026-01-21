@@ -25,6 +25,6 @@ pulsemixer
 pavucontrol
 zsh-autosuggestions
 zsh-syntax-highlighting
+qt5-quickcontrols2
 lsd
 npm
-

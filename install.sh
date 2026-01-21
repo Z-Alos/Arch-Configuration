@@ -61,6 +61,21 @@ for file in "$DOTFILES"/home/{*, .*}; do
 done
 
 # -------------------------
+# Sddm Theme
+# -------------------------
+echo "Linking Sddm Theme, You may have to enter your Password..."
+
+sudo ln -sfn \
+    $DOTFILES/system/sddm/martian" \
+    "/usr/share/sddm/themes/martian"
+
+sudo mkdir -p /etc/sddm.conf.d
+sudo tee /etc/sddm.conf.d/theme.conf > /dev/null <<EOF
+[Theme]
+Current=martian
+EOF
+
+# -------------------------
 # Zsh + Powerlevel10k
 # -------------------------
 echo "Setting up Zsh"

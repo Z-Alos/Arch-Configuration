@@ -60,10 +60,13 @@ alt + g
 #
 
 # set the window state
-# alt + {t,shift + t,s,y}
-# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-alt + {t, shift + t}
-	bspc node -t {tiled, floating}
+# Toggle to tiled
+alt + t
+    bspc node -t tiled
+
+# Toggle to floating
+alt + shift + t
+    bspc node -t floating
 
 # set the node flags
 alt + ctrl + {m,x,y,z}
@@ -137,10 +140,6 @@ alt + ctrl + shift + {Left,Down,Up,Right}
 alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Move floating window with Alt + Left Mouse Button
-alt + button1
-	bspc node -t floating && bspc node -v $(xdotool getmouselocation --shell | awk 'NR==1{print $2}' ,?)  # pseudo
-
 # --------------------------
 # Power Hotkeys
 # --------------------------
@@ -150,7 +149,7 @@ alt + shift + x
 alt + shift + o
 	systemctl reboot
 
-alt + shift + ;
+alt + shift + :
 	systemctl poweroff
 
 
