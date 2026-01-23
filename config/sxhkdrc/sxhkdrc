@@ -149,7 +149,7 @@ alt + shift + x
 alt + shift + o
 	systemctl reboot
 
-alt + shift + :
+alt + F4
 	systemctl poweroff
 
 

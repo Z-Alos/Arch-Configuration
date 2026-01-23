@@ -52,22 +52,29 @@ Rectangle {
     }
 
     // Profile picture
-    Rectangle {
+    ShaderEffect {
         width: 170
         height: 170
-        radius: width / 2
-        border.width: 8
-        border.color: "#DDB6F2"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 30
-        clip: true
 
-        Image {
-            anchors.fill: parent
+        property variant source: Image {
             source: "assets/profile.jpg"
             fillMode: Image.PreserveAspectCrop
+            smooth: true
         }
+
+        fragmentShader: "
+        uniform sampler2D source;
+        varying vec2 qt_TexCoord0;
+        void main() {
+            vec2 c = qt_TexCoord0 - vec2(0.5);
+            if (length(c) > 0.5)
+            discard;
+            gl_FragColor = texture2D(source, qt_TexCoord0);
+        }
+        "
     }
 
     // Password field
@@ -89,6 +96,7 @@ Rectangle {
             placeholderText: "Password"
             font.pixelSize: 16
             font.family: "JetBrains Mono"
+            font.letterSpacing: 4
             horizontalAlignment: Text.AlignHCenter
             focus: true
 
