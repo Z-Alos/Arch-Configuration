@@ -14,7 +14,8 @@ Rectangle {
 
     function doLogin() {
         errorMessage.text = ""
-        sddm.login(userSelector.text, password.text, sessionIndex)
+        var username = userModel.lastUser
+        sddm.login(username, password.text, sessionIndex)
     }
 
     Timer {
@@ -80,11 +81,10 @@ Rectangle {
         "
     }
 
-    // User selector: yet to implement
-    // Username text
+    // Username text 
     Text {
         id: userSelector
-        text: "ZALOS"
+        text: userModel.lastUser
         color: "#FFFFFF"
         font.pixelSize: 16
         font.family: "JetBrains Mono"
@@ -237,9 +237,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        if (userSelector.text === "")
-            userSelector.focus = true
-        else
-            password.focus = true
+        password.focus = true
     }
 }
