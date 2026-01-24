@@ -63,11 +63,11 @@ done
 # -------------------------
 # Sddm Theme
 # -------------------------
-echo "Linking Sddm Theme, You may have to enter your Password..."
+echo "Setting Up Sddm Theme, You may have to enter your Password..."
 
-sudo ln -sfn \
-    $DOTFILES/system/sddm/martian" \
-    "/usr/share/sddm/themes/martian"
+sudo cp -r \
+  "$DOTFILES/system/sddm/martian" \
+  "/usr/share/sddm/themes/martian"
 
 sudo mkdir -p /etc/sddm.conf.d
 sudo tee /etc/sddm.conf.d/theme.conf > /dev/null <<EOF
