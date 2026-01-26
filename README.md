@@ -1,8 +1,6 @@
-<p align="center">
-  <video src="./assets/rice.webm" width="900" autoplay loop muted playsinline></video>
-</p>
-
 <h1 align="center">🪐 Martian Dotfiles</h1>
+
+https://github.com/user-attachments/assets/a87f3ad2-10a1-447e-ade8-7fbead3d6a6a
 
 ---
 
@@ -12,6 +10,7 @@
 
 ## ⚙️ Get Started
 - Clone repo
+
 ```
 git clone git@github.com:zalosspace/martian_dotfiles.git && \
 cd martian_dotfiles
