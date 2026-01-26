@@ -42,7 +42,7 @@ mainbox {
 imagebox {
     padding:                     20px;
     background-color:            transparent;
-    background-image:            url("~/.config/wallpapers/retro_vibe_setup.png", height);
+    background-image:            url("~/.config/wallpapers/tree.png", height);
     orientation:                 vertical;
     children:                    [ "inputbar", "dummy", "mode-switcher" ];
 }

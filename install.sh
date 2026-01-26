@@ -99,10 +99,10 @@ fi
 # -------------------------
 # Keyboard layout
 # -------------------------
-echo " Setting up keyboard layout"
-ln -sfn "$DOTFILES/keyboard_layouts/xmodmap_dvorak.config" "$HOME/.Xmodmap"
-ln -sfn "$DOTFILES/keyboard_layouts/change_to_dvorak.sh" "$HOME/change_to_dvorak.sh"
-bash "$HOME/change_to_dvorak.sh"
+# echo " Setting up keyboard layout"
+# ln -sfn "$DOTFILES/keyboard_layouts/xmodmap_dvorak.config" "$HOME/.Xmodmap"
+# ln -sfn "$DOTFILES/keyboard_layouts/change_to_dvorak.sh" "$HOME/change_to_dvorak.sh"
+# bash "$HOME/change_to_dvorak.sh"
 
 # -------------------------
 # Neovim 
