@@ -1,16 +1,54 @@
 #!/usr/bin/bash
 set -e 
+shopt -s nullglob # handles empty dir
 
 # [Note] Prerequisite:- 
 # Setup Git 
-# Make sure you have this repo in $HOME dir
 
-DOTFILES="$HOME/martian_dotfiles"
-echo "Deploying martian dotfiles"
+# Absolute path to this script's directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES="$SCRIPT_DIR"
+# DOTFILES="$HOME/martian_dotfiles"
+
+[[ -d "$DOTFILES/config" ]] || {
+  echo "❌ There's a problem with path of martian_dotfiles repo try fiddling with the install.sh. Good luck"
+  exit 1
+}
+
+# -------------------------
+# Backup Current Rice
+# -------------------------
+echo "⚠️ This will overwrite existing configs."
+read -rp "Continue? [y/N]: " ans
+[[ "$ans" != "y" ]] && exit 1
+
+echo "🪐 Backing up current rice..."
+mkdir -p "$HOME/backup.config"
+mkdir -p "$HOME/backup.home"
+
+# Backup ~/.config 
+for item in "$DOTFILES"/config/*; do
+  name=$(basename "$item")
+  if [ -e "$HOME/.config/$name" ]; then
+    echo "→ Backing up .config/$name"
+    mv "$HOME/.config/$name" "$HOME/backup.config/"
+  fi
+done
+
+# Backup selected home dotfiles
+for item in .zshrc .p10k.zsh .zprofile .xinitrc .Xresources; do
+  if [ -e "$HOME/$item" ]; then
+    echo "→ Backing up ~/$item"
+    mv "$HOME/$item" "$HOME/backup.home/"
+  fi
+done
+
+echo "✔ Backup complete."
 
 # -------------------------
 # Install Packages
 # -------------------------
+echo "Deploying martian dotfiles"
 echo "Installing Packages"
 
 # Ensure yay exists
@@ -31,7 +69,7 @@ else
 fi
 
 sudo pacman -Syu --needed - < "$DOTFILES/packages/pacman_packages.txt"
-# yay -S --needed - < "$DOTFILES/packages/yay_packages.txt"
+yay -S --needed - < "$DOTFILES/packages/yay_packages.txt"
 
 # -------------------------
 # XDG directories
