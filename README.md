@@ -32,7 +32,7 @@ into two folders named backup.config and backup.home
 ```
 bspc wm -r
 ```
-> [!CAUTION]
+> [!IMPORTANT]
 > Make sure to read every single line of scripts you find online before 
 running it.
 
@@ -62,10 +62,14 @@ chmod +x restore_rice.sh
 ### Bspwm
 *Bspwm* is a tiling window manager which uses binary space partition system.
 
+---
+
 ### Sxhkd
 *Sxhkd* is a simple hotkey daemon, that reacts to input events 
 by executing commands. Unlike i3 WM you need a seperate keybinding (hotkey)
 system inorder to make Bspwm work with your keyboard.
+
+---
 
 ### SDDM (Simple Desktop Display Manager)
 *Sddm* is a session manager.
@@ -74,9 +78,13 @@ system inorder to make Bspwm work with your keyboard.
 - **Session selection** – lets you choose a desktop environment or window manager (like bspwm, KDE, GNOME).
 - **Autologin (optional)** – automatically logs in a user if configured.
 
+---
+
 ### Polybar
 *Polybar* is well a bar which you can configure to display information
 like cpu usage, memory, date, volume, music visualizer, etc.
+
+---
 
 ### Rofi
 *Rofi* an app launcher, window switcher, run dialog and ssh-launcher.
@@ -93,6 +101,8 @@ Example: type reboot or make-coffee without opening a terminal.
 Make your own scripts or menu options.
 Perfect for shortcuts that aren’t built into bspwm or sxhkd.
 
+---
+
 ### Picom:
 *Picom* is a standalone compositor for Xorg, suitable for use 
 with window managers that do not provide compositing.
@@ -105,6 +115,8 @@ Soft depth so windows don’t feel like stickers on a wall.
 Windows fade in and out instead of materializing out of thin air.
 - **VSync / tear-free rendering**
 No screen tearing when you move windows.
+
+---
 
 ### Zsh:
 *Zsh* is a command-line shell, a shell command interpreter which sits 
@@ -120,8 +132,12 @@ Powerful file matching.
 - **Customization & themes**
 Prompts, syntax-highlighting, colors, git status, icons.
 
+---
+
 ### Kitty: 
 **Kitty** is a terminal emulator. Terminal is a window where your shell lives.
+
+---
 
 ## ⌨️ Essential Keybindings
 > Alt is used as the main modifier in this setup
