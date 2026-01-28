@@ -17,7 +17,7 @@ alt + Return
 	kitty
 
 # Program launcher
-alt + h 
+alt + d 
     rofi -show drun
 	# dmenu_run
 
@@ -29,16 +29,16 @@ alt + ctrl + Escape
 # bspwm hotkeys
 # --------------------------
 
-# quit/restart bspwm
-alt + ctrl + {q,o}
-	bspc {quit,wm -r}
+# quit bspwm
+alt + shift + q
+	bspc quit
 
 # close and kill
-alt + x
+alt + q
 	bspc node -{c,k}
 
 # Fullscreen Toggle
-alt + y
+alt + f
     bspc desktop -l next && \
     if bspc query -T -m | grep -q '"layout":"monocle"'; then \
         polybar-msg cmd hide; \
@@ -77,11 +77,11 @@ alt + ctrl + {m,x,y,z}
 #
 
 # FOCUS
-alt + {j,c,v,p}
+alt + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 
 # SWAP   
-alt + shift + {j,c,v,p}
+alt + shift + {h,j,k,l}
 	bspc node -s {west,south,north,east}
 
 # focus the node for the given path jump
@@ -109,7 +109,7 @@ alt + {_,shift + }{1-9,0}
 #
 
 # preselect the direction
-alt + ctrl + {j,c,v,p}
+alt + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
@@ -143,13 +143,8 @@ alt + {Left,Down,Up,Right}
 # --------------------------
 # Power Hotkeys
 # --------------------------
-alt + shift + x
-	bspc quit
-
-alt + shift + o
+alt + shift + r
 	systemctl reboot
 
 alt + F4
 	systemctl poweroff
-
-

@@ -1,6 +1,6 @@
 #! /bin/sh
 
-bash ~/change_to_dvorak.sh &
+# bash ~/change_to_dvorak.sh &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
